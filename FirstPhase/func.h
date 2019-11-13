@@ -11,9 +11,13 @@
 #include <set>
 #include <queue>
 #include <sstream>
+#include <json/json.h>
+
+#include "stdio.h"
 
 #define ARGS_CHECK(argc,num) {if(argc!=num){printf("error args\n");return -1;}}
 #define FSTREAM_CHECK(fstream) {if(!fstream.is_open()){printf("error fstream\n");}}
+
 using std::fstream;
 using std::ios;
 using std::cin;
