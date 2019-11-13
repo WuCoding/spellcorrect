@@ -1,10 +1,11 @@
 #include "func.h"
 
+//输入3个数，返回最小值
 int minThreenum(int num1,int num2,int num3){
 	int result=num1<num2?num1:num2;
 	return result<num3?result:num3;
 }
-
+//输入两个字符串，返回两字符串的最小编辑距离
 int minLevenshtein(string str1,string str2){
 	int rowLen=str1.size()+1;//横向长度 str1
 	int rankLen=str2.size()+1;//竖向长度 str2
@@ -34,3 +35,4 @@ int minLevenshtein(string str1,string str2){
 	}
 	return rank[rankLen-1][rowLen-1];
 }//minLevenshtein
+

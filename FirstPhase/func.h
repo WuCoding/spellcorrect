@@ -73,9 +73,28 @@ struct queueNode{
 		}
 	}
 };
-
-int minThreenum(int,int,int);//求三个数中的最小值
-int minLevenshtein(string,string);//求两个字符串的最小编辑路径
+//输入语料，输出字典
+void wordFrequency(string corpusFile,string dictionaryFile);
+///输入字典文件，输出索引文件
+void createIndex(string dictionaryFile,string indexFile);
 //读入字典文件和索引文件
-void loadDictionaryIndex(int,char**,vector<pair<string,int>>&,unordered_map<string,set<int>>&);
+void loadDictionaryIndex(string dictionaryFile,string indexFile,vector<pair<string,int>> &dictionary,unordered_map<string,set<int>> &index);
+//输入3个数，返回最小值
+int minThreenum(int num1,int num2,int num3);
+//输入两个字符串，返回两字符串的最小编辑距离
+int minLevenshtein(string str1,string str2);
+//用set来存储要查询单词所含的字母
+void getIndexChar(set<string> &setStr,string str);
+//用set来存储与要查询单词含相同字母的候选单词
+void getIndexWord(set<int> &setInt,set<string> &setStr,unordered_map<string,set<int>> &index);
+//用优先级队列来获得关联度最高的前n个单词
+void getPriorityQueue(
+		set<int> &setInt,string str,
+		vector<pair<string,int>> &dictionary,
+		priority_queue<queueNode> &priQue,
+		int queLen);
+//输入文件，要查询的单词，队列长度，输出队列
+void getCandidateWords(string dictionaryFile,string indexFile,string word,
+		priority_queue<queueNode> &priQue,
+		int queLen);
 #endif

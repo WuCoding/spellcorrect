@@ -1,17 +1,22 @@
 #include "func.h"
-
-int main(int argc,char* argv[])
+//通过输入的
+//vector<pair<string,int>> dictionary
+//<单词,词频> 词典 来创建
+//unordered_map<string,set<int>> index
+//<字母,<含该字母的单词下标>> 索引
+//输入的参数分别为：
+//1.输入的词典文件
+//2.输出的索引文件
+void createIndex(string dictionaryFile,string indexFile)
 {
-	//检查输入参数个数
-	checkArgs(argc,3);
 	//打开输入文件
 	fstream in;
-	in.open(argv[1],ios::in);
-	checkFstream(in);
+	in.open(dictionaryFile,ios::in);
+	FSTREAM_CHECK(in);
 	//打开输出文件
 	fstream out;
-	out.open(argv[2],ios::out);
-	checkFstream(out);
+	out.open(indexFile,ios::out);
+	FSTREAM_CHECK(out);
 
 	string word;
 	int frequency;
@@ -48,7 +53,4 @@ int main(int argc,char* argv[])
 	in.close();
 	out.close();
 }
-
-
-
 

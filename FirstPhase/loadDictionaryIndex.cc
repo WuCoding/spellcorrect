@@ -1,15 +1,22 @@
 #include "func.h"
 
-void loadDictionaryIndex(int argc,char* argv[],vector<pair<string,int>> &dictionary,unordered_map<string,set<int>> &index)
+//导入字典文件和索引文件
+//传入:-------------------------------------------->
+//字典文件名 string dictionaryFile
+//索引文件名 string indexFile
+//传出:-------------------------------------------->
+//字典 vector<pair<string,int>> dictionary
+//索引 unordered_map<string,set<int>> index
+void loadDictionaryIndex(string dictionaryFile,string indexFile,vector<pair<string,int>> &dictionary,unordered_map<string,set<int>> &index)
 {
 	fstream inDictionary;
-	inDictionary.open(argv[1],ios::in);
+	inDictionary.open(dictionaryFile,ios::in);
 	FSTREAM_CHECK(inDictionary);
-#if 1
+
 	fstream inIndex;
-	inIndex.open(argv[2],ios::in);
+	inIndex.open(indexFile,ios::in);
 	FSTREAM_CHECK(inIndex);
-#endif
+
 	string word;
 	int frequency;
 	while(inDictionary>>word){
@@ -17,11 +24,6 @@ void loadDictionaryIndex(int argc,char* argv[],vector<pair<string,int>> &diction
 		pair<string,int> pairWord(word,frequency);
 		dictionary.push_back(pairWord);
 	}
-#if 1
-	for(auto v:dictionary){
-		cout<<v.first<<" "<<v.second<<endl;
-	}
-#endif
 
 	string line;
 	string indexChar;
@@ -34,12 +36,11 @@ void loadDictionaryIndex(int argc,char* argv[],vector<pair<string,int>> &diction
 			index[indexChar].insert(indexInt);
 		}
 	}
-#if 1
-	for(auto v:index){
-		cout<<v.first<<endl;
-	}
-#endif
+
 	inDictionary.close();
 	inIndex.close();
 }
+
+
+
 

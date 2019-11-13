@@ -1,17 +1,16 @@
 #include "func.h"
 
-int main(int argc,char* argv[])
+//输入语料文件，输出字典文件
+void wordFrequency(string corpusFile,string dictionaryFile)
 {
-	//检查输入参数个数
-	checkArgs(argc,3);
 	//打开输入文件
 	fstream in;
-	in.open(argv[1],ios::in);
-	checkFstream(in);
+	in.open(corpusFile,ios::in);
+	FSTREAM_CHECK(in);
 	//打开输出文件
 	fstream out;
-	out.open(argv[2],ios::out);
-	checkFstream(out);
+	out.open(dictionaryFile,ios::out);
+	FSTREAM_CHECK(out);
 
 	//创建词典<单词，词频>
 	map<string,int> dictionary;
@@ -38,3 +37,4 @@ int main(int argc,char* argv[])
 	in.close();
 	out.close();
 }
+
