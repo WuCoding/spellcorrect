@@ -101,9 +101,22 @@ void test5(){
 #if 1
 void test6(){
 	stack<queueNode> staQueueNode;
-	vector<queueNode> vecQueueNode;
-	for(int i=0;i<5;++i){
-
+	string line;
+	fstream in;
+	queueNode node;
+	in.open("test.txt",ios::in);
+	while(getline(in,line)){
+		istringstream linestream(line);
+		linestream>>node.word>>node.frequency>>node.differentDegree;
+		staQueueNode.push(node);
+	}
+	while(!staQueueNode.empty()){
+		node=staQueueNode.top();
+		cout<<node.word<<" "<<node.frequency<<" "<<node.differentDegree<<endl;
+		staQueueNode.pop();
+	}
+}
+#endif
 
 int main(int argc,char* argv[])
 {
@@ -112,5 +125,6 @@ int main(int argc,char* argv[])
 	//test2();
 	//test3();
 	//test4();
-	test5();
+	//test5();
+	test6();
 }

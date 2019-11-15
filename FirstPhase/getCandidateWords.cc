@@ -64,9 +64,9 @@ void getPriorityQueue(
 //输出:---------------------------------------------------------------->
 //
 void getCandidateWords(string dictionaryFile,string indexFile,string word,
-		priority_queue<queueNode> &priQue,
-		int queLen)
+		stack<queueNode> &staQue,int queLen)
 {
+	//载入字典和索引
 	vector<pair<string,int>> dictionary;
 	unordered_map<string,set<int>> index;
 	loadDictionaryIndex(dictionaryFile,indexFile,dictionary,index);
@@ -77,18 +77,11 @@ void getCandidateWords(string dictionaryFile,string indexFile,string word,
 	set<int> setInt;//存储相同字母的单词
 	getIndexWord(setInt,setStr,index);
 	
+	priority_queue<queueNode> priQue;//获取优先级队列
 	getPriorityQueue(setInt,word,dictionary,priQue,queLen);
-}
-int main(int argc,char* argv[]){
-	ARGS_CHECK(argc,3);
-	priority_queue<queueNode> priQue;
-	string word;
-	cin>>word;
-	getCandidateWords(argv[1],argv[2],word,priQue,6);
 
-	while(priQue.size()){
-		cout<<priQue.top().word<<" "<<priQue.top().frequency<<" "
-			<<priQue.top().differentDegree<<endl;
+	while(!priQue.empty()){
+		staQue.push(priQue.top());
 		priQue.pop();
 	}
 }

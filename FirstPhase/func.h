@@ -78,6 +78,13 @@ struct queueNode{
 			}
 		}
 	}
+	//赋值运算符重载
+	queueNode& operator =(const queueNode &a){
+		this->word=a.word;
+		this->frequency=a.frequency;
+		this->differentDegree=a.differentDegree;
+		return *this;
+	}
 };
 //输入语料，输出字典
 void wordFrequency(string corpusFile,string dictionaryFile);
@@ -101,6 +108,5 @@ void getPriorityQueue(
 		int queLen);
 //输入文件，要查询的单词，队列长度，输出队列
 void getCandidateWords(string dictionaryFile,string indexFile,string word,
-		priority_queue<queueNode> &priQue,
-		int queLen);
+		stack<queueNode> &staQue,int queLen);
 #endif
