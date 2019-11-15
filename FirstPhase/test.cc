@@ -81,7 +81,7 @@ void test4(){
 	}
 }
 #endif
-#if 1
+#if 0
 void test5(){
 	queueNode q1,q2,q3;
 	cin>>q1.word>>q1.frequency>>q1.differentDegree;
@@ -98,6 +98,13 @@ void test5(){
 	}
 }
 #endif
+#if 1
+void test6(){
+	stack<queueNode> staQueueNode;
+	vector<queueNode> vecQueueNode;
+	for(int i=0;i<5;++i){
+
+
 int main(int argc,char* argv[])
 {
 	//test();

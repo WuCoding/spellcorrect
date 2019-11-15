@@ -12,6 +12,7 @@
 #include <queue>
 #include <sstream>
 #include <json/json.h>
+#include <stack>
 
 #include "stdio.h"
 
@@ -32,6 +33,7 @@ using std::set;
 using std::queue;
 using std::priority_queue;
 using std::istringstream;
+using std::stack;
 /*
 void checkArgs(int argc,int num){
 	if(argc!=num){
