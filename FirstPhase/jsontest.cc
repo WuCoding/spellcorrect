@@ -69,6 +69,6 @@ void test1(){
 int main()
 {
 	createJSON();
-	//test();
+	test();
 	//test1();
 }
