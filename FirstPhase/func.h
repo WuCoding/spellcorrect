@@ -33,19 +33,10 @@ using std::set;
 using std::queue;
 using std::priority_queue;
 using std::istringstream;
+using std::stringstream;
 using std::stack;
-/*
-void checkArgs(int argc,int num){
-	if(argc!=num){
-		cout<<"参数不匹配！"<<endl;
-	}
-}
-void checkFstream(fstream &tmp){
-	if(!tmp.is_open()){
-		cout<<"读取文件失败！"<<endl;
-	}
-}
-*/
+
+//候选词队列节点，用于候选词优先级队列
 struct queueNode{
 	queueNode()
 	{};
@@ -86,6 +77,56 @@ struct queueNode{
 		return *this;
 	}
 };
+//用于内存Cache的链表节点
+struct ListNode{
+	string _key;
+	string _json;
+	ListNode* _next;
+	ListNode* _last;
+
+	ListNode(string key,string json)
+	: _key(key),_json(json),_next(nullptr),_last(nullptr)
+	{}
+};
+//用于内存Cache的链表和map
+struct QueueMap{
+	ListNode* _QueHead;
+	ListNode* _QueTail;
+	size_t _QueLen;
+	size_t _Capacity;
+	map<string,ListNode*> _keys;
+
+	QueueMap(size_t capacity=10)
+	: _QueHead(nullptr),_QueTail(nullptr),_QueLen(0),_Capacity(capacity)
+	{}
+	//返回队列长度
+	size_t size() const { return _QueLen;}
+	//查找Cache中有无关键字
+	bool exist(string key) const{
+		auto it=_keys.find(key);
+		if(it==_keys.end()){//Cache中无该关键词
+			return false;
+		}else{//Cache中有该关键词
+			return true;
+		}
+	}
+	//队列是否已满
+	bool full() const {
+		if(_QueLen<_Capacity){//队列未满
+			return false;
+		}else{//队列已满
+			return true;
+		}
+	}
+	//队列是否为空
+	bool empty() const{
+		if(_QueLen==0){//队列为空
+			return true;
+		}else{//队列不空
+			return false;
+		}
+	}
+};
 //输入语料，输出字典
 void wordFrequency(string corpusFile,string dictionaryFile);
 ///输入字典文件，输出索引文件
@@ -109,4 +150,14 @@ void getPriorityQueue(
 //输入文件，要查询的单词，队列长度，输出队列
 void getCandidateWords(string dictionaryFile,string indexFile,string word,
 		stack<queueNode> &staQue,int queLen);
+//将string类型的json写入磁盘Cache文件中
+void writeDiscCache(string cacheJson,string discFile);
+//将磁盘Cache文件读取到一个string，返回该string
+string readJsonFile(string discFile);
+//插入一个新的节点（头插法）直接放到头部不进行检测
+void insertNewNode(QueueMap* pQuemap,ListNode* pNode);
+//删除队尾节点，直接删除，不进行队列是否为空的检查
+void deleteQueTail(QueueMap* pQuemap);
+//访问一个已存在的节点，返回其json字符串，无需判断队列是否为空
+string getJson(QueueMap* pQuemap,string key);
 #endif
