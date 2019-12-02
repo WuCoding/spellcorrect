@@ -1,4 +1,4 @@
-#include "func.h"
+#include "../inc/func.h"
 //通过输入的
 //vector<pair<string,int>> dictionary
 //<单词,词频> 词典 来创建

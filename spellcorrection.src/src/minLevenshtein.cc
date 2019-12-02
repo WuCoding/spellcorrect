@@ -1,4 +1,4 @@
-#include "func.h"
+#include "../inc/func.h"
 
 //输入3个数，返回最小值
 int minThreenum(int num1,int num2,int num3){

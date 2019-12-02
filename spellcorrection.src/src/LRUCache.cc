@@ -1,4 +1,4 @@
-#include "func.h"
+#include "../inc/func.h"
 
 //插入一个新的节点（头插法）直接放到头部不进行检测
 void insertNewNode(QueueMap* pQuemap,ListNode* pNode){

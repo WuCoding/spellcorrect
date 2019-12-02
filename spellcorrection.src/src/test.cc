@@ -1,4 +1,4 @@
-#include "func.h"
+#include "../inc/func.h"
 #if 0
 void test(){
 	unordered_map<string,set<int>> index;

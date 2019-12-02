@@ -1,4 +1,4 @@
-#include "func.h"
+#include "../inc/func.h"
 
 //将string写入到文件
 void writeDiscCache(string cacheJson,string discFile){

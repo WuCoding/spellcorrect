@@ -1,4 +1,4 @@
-#include "func.h"
+#include "../inc/func.h"
 
 void createJSON()
 {

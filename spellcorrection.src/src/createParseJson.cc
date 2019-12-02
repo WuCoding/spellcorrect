@@ -1,4 +1,4 @@
-#include "func.h"
+#include "../inc/func.h"
 //构造json字符串
 //传入：查询词 候选词栈
 //传出：json字符串

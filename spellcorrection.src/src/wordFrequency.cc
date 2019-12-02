@@ -1,4 +1,4 @@
-#include "func.h"
+#include "../inc/func.h"
 
 //输入语料文件，输出字典文件
 void wordFrequency(string corpusFile,string dictionaryFile)
