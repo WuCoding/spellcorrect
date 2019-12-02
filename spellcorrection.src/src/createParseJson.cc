@@ -24,7 +24,6 @@ string createJson(string word,stack<queueNode> &staQueueNode){
 
 	return fjsonstr;
 }
-#if 1
 //解析json字符串
 void parseJson(string json){
 	Json::Value root;
@@ -37,21 +36,3 @@ void parseJson(string json){
 		cout<<sjsonstr<<endl;
 	}
 }
-#endif
-int main(int argc,char* argv[]){
-	
-	ARGS_CHECK(argc,3);
-	
-	stack<queueNode> staQue;
-	string word;
-	cin>>word;
-	
-	getCandidateWords(argv[1],argv[2],word,staQue,6);
-	
-	string json;
-	json=createJson(word,staQue);
-	cout<<json<<endl;
-
-	parseJson(json);
-}
-

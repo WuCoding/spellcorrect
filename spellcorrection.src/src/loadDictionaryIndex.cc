@@ -40,7 +40,3 @@ void loadDictionaryIndex(string dictionaryFile,string indexFile,vector<pair<stri
 	inDictionary.close();
 	inIndex.close();
 }
-
-
-
-

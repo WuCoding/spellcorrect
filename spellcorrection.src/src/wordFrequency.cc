@@ -37,4 +37,3 @@ void wordFrequency(string corpusFile,string dictionaryFile)
 	in.close();
 	out.close();
 }
-

@@ -13,7 +13,6 @@ void getIndexChar(set<string> &setStr,string str){
 	}
 }
 
-
 //用set来存储与要查询单词含相同字母的候选单词
 //传入:------------------------------------------------->
 //包含所有字母 set<string> setStr

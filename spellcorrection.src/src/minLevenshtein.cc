@@ -35,4 +35,3 @@ int minLevenshtein(string str1,string str2){
 	}
 	return rank[rankLen-1][rowLen-1];
 }//minLevenshtein
-
