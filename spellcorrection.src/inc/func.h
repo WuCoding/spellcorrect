@@ -77,26 +77,22 @@ struct queueNode{
 		return *this;
 	}
 };
-//用于内存Cache的链表节点
-struct ListNode{
-	string _key;
-	string _json;
-	ListNode* _next;
-	ListNode* _last;
 
-	ListNode(string key,string json)
-	: _key(key),_json(json),_next(nullptr),_last(nullptr)
-	{}
-};
 //用于内存Cache的链表和map
-struct QueueMap{
-	ListNode* _QueHead;
-	ListNode* _QueTail;
-	size_t _QueLen;
-	size_t _Capacity;
-	map<string,ListNode*> _keys;
+class LRUCache{
+	//内存Cache的链表节点
+	struct CacheNode{
+		CacheNode(string key,string json)
+		: _key(key),_json(json),_next(nullptr),_last(nullptr)
+		{}
 
-	QueueMap(size_t capacity=10)
+		string _key;
+		string _json;
+		CacheNode* _next;
+		CacheNode* _last;
+	};		
+public:
+	LRUCache(size_t capacity=10)
 	: _QueHead(nullptr),_QueTail(nullptr),_QueLen(0),_Capacity(capacity)
 	{}
 	//返回队列长度
@@ -126,6 +122,39 @@ struct QueueMap{
 			return false;
 		}
 	}
+	//将队列中的信息打印
+	void print()const{
+		cout<<"队列长度="<<_QueLen<<endl;
+		cout<<"队列容量="<<_Capacity<<endl;
+		cout<<"队列节点依次是（正序）："<<endl;
+		CacheNode* pCurNode=_QueHead;
+		while(pCurNode!=nullptr){
+			cout<<pCurNode->_key<<" "<<pCurNode->_json<<endl;
+			pCurNode=pCurNode->_next;
+		}
+		cout<<"队列节点依次是（倒序）："<<endl;
+		pCurNode=_QueTail;
+		while(pCurNode!=nullptr){
+			cout<<pCurNode->_key<<" "<<pCurNode->_json<<endl;
+			pCurNode=pCurNode->_last;
+		}
+		cout<<"map中的节点："<<endl;
+		for(auto it=_keys.begin();it!=_keys.end();++it){
+			cout<<it->first<<" "<<it->second->_json<<endl;
+		}
+	}
+	//删除尾节点
+	void deleteTailNode();
+	//插入一个新的节点
+	void insert(string key,string json);
+	//访问一个已存在的节点，返回其json字符串
+	string getJson(string key);
+private:
+	CacheNode* _QueHead;//队列头
+	CacheNode* _QueTail;//队列尾
+	size_t _QueLen;//队列长度
+	size_t _Capacity;//容量
+	map<string,CacheNode*> _keys;
 };
 //输入语料，输出字典
 void wordFrequency(string corpusFile,string dictionaryFile);
@@ -135,8 +164,14 @@ void createIndex(string dictionaryFile,string indexFile);
 void loadDictionaryIndex(string dictionaryFile,string indexFile,vector<pair<string,int>> &dictionary,unordered_map<string,set<int>> &index);
 //输入3个数，返回最小值
 int minThreenum(int num1,int num2,int num3);
+//返回一个字符所占的字节数
+size_t nBytesCode(const char ch);
+//返回一个字符串中的字符数
+size_t length(string str);
+//输入一个字符串返回一个存储该字符串字符的vector<string>
+void getCharFromString(string str,vector<string> &vecStr);
 //输入两个字符串，返回两字符串的最小编辑距离
-int minLevenshtein(string str1,string str2);
+size_t minLevenshtein(string str1,string str2);
 //用set来存储要查询单词所含的字母
 void getIndexChar(set<string> &setStr,string str);
 //用set来存储与要查询单词含相同字母的候选单词
@@ -155,9 +190,9 @@ void writeDiscCache(string cacheJson,string discFile);
 //将磁盘Cache文件读取到一个string，返回该string
 string readJsonFile(string discFile);
 //插入一个新的节点（头插法）直接放到头部不进行检测
-void insertNewNode(QueueMap* pQuemap,ListNode* pNode);
+//void insertNewNode(QueueMap* pQuemap,ListNode* pNode);
 //删除队尾节点，直接删除，不进行队列是否为空的检查
-void deleteQueTail(QueueMap* pQuemap);
+//void deleteQueTail(QueueMap* pQuemap);
 //访问一个已存在的节点，返回其json字符串，无需判断队列是否为空
-string getJson(QueueMap* pQuemap,string key);
+//string getJson(QueueMap* pQuemap,string key);
 #endif

@@ -23,12 +23,3 @@ string readJsonFile(string discFile){
 	}
 	return resStream.str();
 }
-//将文件Cache的json字符串放入内存Cache中
-void createMemoryCache(string json,QueueMap* pQuemap){
-	Json::Value root;
-	Json::Reader reader;
-	if(!reader.parse(json,root)){
-		cout<<"parse discCache failed"<<endl;
-		return;
-	}else{
-		
