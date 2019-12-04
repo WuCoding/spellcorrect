@@ -149,6 +149,10 @@ public:
 	void insert(string key,string json);
 	//访问一个已存在的节点，返回其json字符串
 	string getJson(string key);
+	//将LRUCache中的cache转为json风格字符串
+	string output();
+	//将json风格字符串转为LRUCache内的数据
+	void input(string json);
 private:
 	CacheNode* _QueHead;//队列头
 	CacheNode* _QueTail;//队列尾

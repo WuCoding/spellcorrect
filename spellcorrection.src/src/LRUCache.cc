@@ -1,6 +1,6 @@
 #include "../inc/func.h"
 
-//插入一个新的节点（头插法）直接放到头部不进行检测
+//插入一个新的节点（头插法）若已满则删除尾节点再进行插入
 void LRUCache::insert(string key,string json){
 	if(full()){//如果已满就删除一个尾节点
 		deleteTailNode();
@@ -58,7 +58,60 @@ string LRUCache::getJson(string key){
 	}
 	return pKeyNode->_json;
 }
-//载入文件中Cache到LRUCache
+//将LRUCache中的cache转为json风格字符串
 string LRUCache::output(){
+	Json::Value discCache;
+	CacheNode* pCurCacheNode=_QueHead;
+	while(pCurCacheNode!=nullptr){
+		Json::Value object;
+		object["key"]=pCurCacheNode->_key;
+		object["json"]=pCurCacheNode->_json;
+		discCache.append(object);
+		pCurCacheNode=pCurCacheNode->_next;
+	}
+	Json::StyledWriter swriter;
+	return swriter.write(discCache);//结尾自带换行
+}
 
+//将json风格字符串转为LRUCache内的数据
+void LRUCache::input(string json){
+	Json::Value discCache;
+	Json::Reader reader;
+	if(!reader.parse(json,discCache)){
+		cout<<"parse fail"<<endl;
+		return;
+	}else{
+		string key,json;
+		for(int i=discCache.size()-1;i>=0;--i){
+			key=discCache[i]["key"].asString();
+			json=discCache[i]["json"].asString();
+			insert(key,json);
+		}
+	}
+}
 
+void test(){
+	LRUCache cache;
+	cache.print();
+	cout<<"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"<<endl;
+	cout<<"cache.output()="<<cache.output()<<endl;
+/*
+	string s1,s2;
+	for(int i=0;i<5;++i){
+		cin>>s1>>s2;
+		cache.insert(s1,s2);
+	}
+	cout<<"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"<<endl;
+	cache.print();
+	cout<<"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"<<endl;
+	cout<<cache.output()<<endl;
+	LRUCache cache1;
+	string json=cache.output();
+	cout<<json<<endl;
+	cache1.input(json);
+	cache1.print();
+*/
+}
+int main(){
+	test();
+}

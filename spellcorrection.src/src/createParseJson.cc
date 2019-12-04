@@ -20,8 +20,6 @@ string createJson(string word,stack<queueNode> &staQueueNode){
 
 	Json::FastWriter fwriter;
 	string fjsonstr=fwriter.write(req);
-	cout<<fjsonstr;
-
 	return fjsonstr;
 }
 //解析json字符串
@@ -35,4 +33,24 @@ void parseJson(string json){
 		string sjsonstr=swriter.write(root);
 		cout<<sjsonstr<<endl;
 	}
+}
+int main(){
+	stack<queueNode> staQue;
+	string str;
+	cin>>str;
+	const string dictionaryFile="../data/dictionary.txt";
+	const string indexFile="../data/index.txt";
+
+
+	getCandidateWords(dictionaryFile,indexFile,str,staQue,5);
+	string json=createJson(str,staQue);
+	Json::Value discCache;
+	Json::Value object;
+	object["key"]=str;
+	object["json"]=json;
+	discCache.append(object);
+	Json::StyledWriter swriter;
+	string cache=swriter.write(discCache);
+	string discFile="../data/discCache.json";
+	writeDiscCache(cache,discFile);
 }
