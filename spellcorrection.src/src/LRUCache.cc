@@ -91,11 +91,19 @@ void LRUCache::input(string json){
 }
 
 void test(){
-	LRUCache cache;
+	LRUCache cache(3);
 	cache.print();
 	cout<<"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"<<endl;
-	cout<<"cache.output()="<<cache.output()<<endl;
-/*
+//	cout<<"cache.output()="<<cache.output()<<endl;
+
+	string jsonFile="../data/discCache.json";
+	string json=readFromFile(jsonFile);
+	cache.input(json);
+	cache.print();
+
+	
+	
+	/*
 	string s1,s2;
 	for(int i=0;i<5;++i){
 		cin>>s1>>s2;

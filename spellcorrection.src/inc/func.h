@@ -13,8 +13,11 @@
 #include <sstream>
 #include <json/json.h>
 #include <stack>
+#include <ctype.h>
+#include <algorithm>
 
 #include "stdio.h"
+#include "../cppjieba/include/cppjieba/Jieba.hpp"
 
 #define ARGS_CHECK(argc,num) {if(argc!=num){printf("error args\n");return -1;}}
 #define FSTREAM_CHECK(fstream) {if(!fstream.is_open()){printf("error fstream\n");}}
@@ -189,14 +192,8 @@ void getPriorityQueue(
 //输入文件，要查询的单词，队列长度，输出队列
 void getCandidateWords(string dictionaryFile,string indexFile,string word,
 		stack<queueNode> &staQue,int queLen);
-//将string类型的json写入磁盘Cache文件中
-void writeDiscCache(string cacheJson,string discFile);
-//将磁盘Cache文件读取到一个string，返回该string
-string readJsonFile(string discFile);
-//插入一个新的节点（头插法）直接放到头部不进行检测
-//void insertNewNode(QueueMap* pQuemap,ListNode* pNode);
-//删除队尾节点，直接删除，不进行队列是否为空的检查
-//void deleteQueTail(QueueMap* pQuemap);
-//访问一个已存在的节点，返回其json字符串，无需判断队列是否为空
-//string getJson(QueueMap* pQuemap,string key);
+//将string类型的json写入到文件中
+void writeInFile(string json,string file);
+//将文件中全部数据读取到一个string，返回该string
+string readFromFile(string file);
 #endif

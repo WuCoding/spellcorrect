@@ -1,0 +1,200 @@
+Start testing: Dec 03 08:13 CST
+----------------------------------------------------------
+1/3 Testing: ./test/test.run
+1/3 Test: ./test/test.run
+Command: "/home/wu/cppjieba/build/test/test.run"
+Directory: /home/wu/cppjieba/build
+"./test/test.run" start time: Dec 03 08:13 CST
+Output:
+----------------------------------------------------------
+Running main() from gtest_main.cc
+[==========] Running 31 tests from 14 test cases.
+[----------] Global test environment set-up.
+[----------] 2 tests from KeywordExtractorTest
+[ RUN      ] KeywordExtractorTest.Test1
+[       OK ] KeywordExtractorTest.Test1 (503 ms)
+[ RUN      ] KeywordExtractorTest.Test2
+[       OK ] KeywordExtractorTest.Test2 (434 ms)
+[----------] 2 tests from KeywordExtractorTest (937 ms total)
+
+[----------] 2 tests from TrieTest
+[ RUN      ] TrieTest.Empty
+[       OK ] TrieTest.Empty (0 ms)
+[ RUN      ] TrieTest.Construct
+[       OK ] TrieTest.Construct (0 ms)
+[----------] 2 tests from TrieTest (0 ms total)
+
+[----------] 5 tests from DictTrieTest
+[ RUN      ] DictTrieTest.NewAndDelete
+[       OK ] DictTrieTest.NewAndDelete (159 ms)
+[ RUN      ] DictTrieTest.Test1
+[       OK ] DictTrieTest.Test1 (158 ms)
+[ RUN      ] DictTrieTest.UserDict
+[       OK ] DictTrieTest.UserDict (159 ms)
+[ RUN      ] DictTrieTest.UserDictWithMaxWeight
+[       OK ] DictTrieTest.UserDictWithMaxWeight (166 ms)
+[ RUN      ] DictTrieTest.Dag
+[       OK ] DictTrieTest.Dag (158 ms)
+[----------] 5 tests from DictTrieTest (801 ms total)
+
+[----------] 5 tests from MixSegmentTest
+[ RUN      ] MixSegmentTest.Test1
+[       OK ] MixSegmentTest.Test1 (566 ms)
+[ RUN      ] MixSegmentTest.NoUserDict
+[       OK ] MixSegmentTest.NoUserDict (182 ms)
+[ RUN      ] MixSegmentTest.UserDict
+[       OK ] MixSegmentTest.UserDict (174 ms)
+[ RUN      ] MixSegmentTest.TestUserDict
+2019-12-03 08:13:06 /home/wu/cppjieba/include/cppjieba/PreFilter.hpp:21 ERROR decode failed. 
+2019-12-03 08:13:06 /home/wu/cppjieba/include/cppjieba/PreFilter.hpp:21 ERROR decode failed. 
+2019-12-03 08:13:06 /home/wu/cppjieba/include/cppjieba/PreFilter.hpp:21 ERROR decode failed. 
+2019-12-03 08:13:06 /home/wu/cppjieba/include/cppjieba/PreFilter.hpp:21 ERROR decode failed. 
+2019-12-03 08:13:06 /home/wu/cppjieba/include/cppjieba/PreFilter.hpp:21 ERROR decode failed. 
+2019-12-03 08:13:06 /home/wu/cppjieba/include/cppjieba/PreFilter.hpp:21 ERROR decode failed. 
+2019-12-03 08:13:06 /home/wu/cppjieba/include/cppjieba/PreFilter.hpp:21 ERROR decode failed. 
+2019-12-03 08:13:06 /home/wu/cppjieba/include/cppjieba/PreFilter.hpp:21 ERROR decode failed. 
+2019-12-03 08:13:06 /home/wu/cppjieba/include/cppjieba/PreFilter.hpp:21 ERROR decode failed. 
+2019-12-03 08:13:06 /home/wu/cppjieba/include/cppjieba/PreFilter.hpp:21 ERROR decode failed. 
+2019-12-03 08:13:06 /home/wu/cppjieba/include/cppjieba/PreFilter.hpp:21 ERROR decode failed. 
+2019-12-03 08:13:06 /home/wu/cppjieba/include/cppjieba/PreFilter.hpp:21 ERROR decode failed. 
+2019-12-03 08:13:06 /home/wu/cppjieba/include/cppjieba/PreFilter.hpp:21 ERROR decode failed. 
+2019-12-03 08:13:06 /home/wu/cppjieba/include/cppjieba/PreFilter.hpp:21 ERROR decode failed. 
+[       OK ] MixSegmentTest.TestUserDict (217 ms)
+[ RUN      ] MixSegmentTest.TestMultiUserDict
+[       OK ] MixSegmentTest.TestMultiUserDict (179 ms)
+[----------] 5 tests from MixSegmentTest (1319 ms total)
+
+[----------] 2 tests from MPSegmentTest
+[ RUN      ] MPSegmentTest.Test1
+[       OK ] MPSegmentTest.Test1 (514 ms)
+[ RUN      ] MPSegmentTest.Unicode32
+[       OK ] MPSegmentTest.Unicode32 (511 ms)
+[----------] 2 tests from MPSegmentTest (1025 ms total)
+
+[----------] 1 test from HMMSegmentTest
+[ RUN      ] HMMSegmentTest.Test1
+[       OK ] HMMSegmentTest.Test1 (18 ms)
+[----------] 1 test from HMMSegmentTest (18 ms total)
+
+[----------] 1 test from FullSegment
+[ RUN      ] FullSegment.Test1
+[       OK ] FullSegment.Test1 (156 ms)
+[----------] 1 test from FullSegment (156 ms total)
+
+[----------] 2 tests from QuerySegment
+[ RUN      ] QuerySegment.Test1
+[       OK ] QuerySegment.Test1 (534 ms)
+[ RUN      ] QuerySegment.Test2
+[       OK ] QuerySegment.Test2 (182 ms)
+[----------] 2 tests from QuerySegment (716 ms total)
+
+[----------] 1 test from PosTaggerTest
+[ RUN      ] PosTaggerTest.Test
+[       OK ] PosTaggerTest.Test (532 ms)
+[----------] 1 test from PosTaggerTest (532 ms total)
+
+[----------] 1 test from PosTagger
+[ RUN      ] PosTagger.TestUserDict
+[       OK ] PosTagger.TestUserDict (533 ms)
+[----------] 1 test from PosTagger (533 ms total)
+
+[----------] 3 tests from JiebaTest
+[ RUN      ] JiebaTest.Test1
+[       OK ] JiebaTest.Test1 (765 ms)
+[ RUN      ] JiebaTest.WordTest
+[       OK ] JiebaTest.WordTest (760 ms)
+[ RUN      ] JiebaTest.InsertUserWord
+[       OK ] JiebaTest.InsertUserWord (767 ms)
+[----------] 3 tests from JiebaTest (2294 ms total)
+
+[----------] 1 test from PreFilterTest
+[ RUN      ] PreFilterTest.Test1
+[       OK ] PreFilterTest.Test1 (0 ms)
+[----------] 1 test from PreFilterTest (0 ms total)
+
+[----------] 3 tests from UnicodeTest
+[ RUN      ] UnicodeTest.Test1
+[       OK ] UnicodeTest.Test1 (0 ms)
+[ RUN      ] UnicodeTest.Illegal
+[       OK ] UnicodeTest.Illegal (0 ms)
+[ RUN      ] UnicodeTest.Rand
+[       OK ] UnicodeTest.Rand (3 ms)
+[----------] 3 tests from UnicodeTest (3 ms total)
+
+[----------] 2 tests from TextRankExtractorTest
+[ RUN      ] TextRankExtractorTest.Test1
+[       OK ] TextRankExtractorTest.Test1 (193 ms)
+[ RUN      ] TextRankExtractorTest.Test2
+[       OK ] TextRankExtractorTest.Test2 (177 ms)
+[----------] 2 tests from TextRankExtractorTest (370 ms total)
+
+[----------] Global test environment tear-down
+[==========] 31 tests from 14 test cases ran. (8706 ms total)
+[  PASSED  ] 31 tests.
+<end of output>
+Test time =   8.71 sec
+----------------------------------------------------------
+Test Passed.
+"./test/test.run" end time: Dec 03 08:13 CST
+"./test/test.run" time elapsed: 00:00:08
+----------------------------------------------------------
+
+2/3 Testing: ./load_test
+2/3 Test: ./load_test
+Command: "/home/wu/cppjieba/build/load_test"
+Directory: /home/wu/cppjieba/build
+"./load_test" start time: Dec 03 08:13 CST
+Output:
+----------------------------------------------------------
+process [  2 %]process [  4 %]process [  6 %]process [  8 %]process [ 10 %]process [ 12 %]process [ 14 %]process [ 16 %]process [ 18 %]process [ 20 %]process [ 22 %]process [ 24 %]process [ 26 %]process [ 28 %]process [ 30 %]process [ 32 %]process [ 34 %]process [ 36 %]process [ 38 %]process [ 40 %]process [ 42 %]process [ 44 %]process [ 46 %]process [ 48 %]process [ 50 %]process [ 52 %]process [ 54 %]process [ 56 %]process [ 58 %]process [ 60 %]process [ 62 %]process [ 64 %]process [ 66 %]process [ 68 %]process [ 70 %]process [ 72 %]process [ 74 %]process [ 76 %]process [ 78 %]process [ 80 %]process [ 82 %]process [ 84 %]process [ 86 %]process [ 88 %]process [ 90 %]process [ 92 %]process [ 94 %]process [ 96 %]process [ 98 %]process [100 %]
+[0;32mCut: [5.888 seconds]time consumed.[0m
+process [  0 %]process [  0 %]process [  1 %]process [  1 %]process [  1 %]process [  2 %]process [  2 %]process [  2 %]process [  2 %]process [  2 %]process [  3 %]process [  3 %]process [  3 %]process [  4 %]process [  4 %]process [  4 %]process [  4 %]process [  4 %]process [  5 %]process [  5 %]process [  5 %]process [  6 %]process [  6 %]process [  6 %]process [  6 %]process [  6 %]process [  7 %]process [  7 %]process [  7 %]process [  8 %]process [  8 %]process [  8 %]process [  8 %]process [  8 %]process [  9 %]process [  9 %]process [  9 %]process [ 10 %]process [ 10 %]process [ 10 %]process [ 10 %]process [ 10 %]process [ 11 %]process [ 11 %]process [ 11 %]process [ 12 %]process [ 12 %]process [ 12 %]process [ 12 %]process [ 12 %]process [ 13 %]process [ 13 %]process [ 13 %]process [ 14 %]process [ 14 %]process [ 14 %]process [ 14 %]process [ 14 %]process [ 15 %]process [ 15 %]process [ 15 %]process [ 16 %]process [ 16 %]process [ 16 %]process [ 16 %]process [ 16 %]process [ 17 %]process [ 17 %]process [ 17 %]process [ 18 %]process [ 18 %]process [ 18 %]process [ 18 %]process [ 18 %]process [ 19 %]process [ 19 %]process [ 19 %]process [ 20 %]process [ 20 %]process [ 20 %]process [ 20 %]process [ 20 %]process [ 21 %]process [ 21 %]process [ 21 %]process [ 22 %]process [ 22 %]process [ 22 %]process [ 22 %]process [ 22 %]process [ 23 %]process [ 23 %]process [ 23 %]process [ 24 %]process [ 24 %]process [ 24 %]process [ 24 %]process [ 24 %]process [ 25 %]process [ 25 %]process [ 25 %]process [ 26 %]process [ 26 %]process [ 26 %]process [ 26 %]process [ 26 %]process [ 27 %]process [ 27 %]process [ 27 %]process [ 28 %]process [ 28 %]process [ 28 %]process [ 28 %]process [ 28 %]process [ 29 %]process [ 29 %]process [ 29 %]process [ 30 %]process [ 30 %]process [ 30 %]process [ 30 %]process [ 30 %]process [ 31 %]process [ 31 %]process [ 31 %]process [ 32 %]process [ 32 %]process [ 32 %]process [ 32 %]process [ 32 %]process [ 33 %]process [ 33 %]process [ 33 %]process [ 34 %]process [ 34 %]process [ 34 %]process [ 34 %]process [ 34 %]process [ 35 %]process [ 35 %]process [ 35 %]process [ 36 %]process [ 36 %]process [ 36 %]process [ 36 %]process [ 36 %]process [ 37 %]process [ 37 %]process [ 37 %]process [ 38 %]process [ 38 %]process [ 38 %]process [ 38 %]process [ 38 %]process [ 39 %]process [ 39 %]process [ 39 %]process [ 40 %]process [ 40 %]process [ 40 %]process [ 40 %]process [ 40 %]process [ 41 %]process [ 41 %]process [ 41 %]process [ 42 %]process [ 42 %]process [ 42 %]process [ 42 %]process [ 42 %]process [ 43 %]process [ 43 %]process [ 43 %]process [ 44 %]process [ 44 %]process [ 44 %]process [ 44 %]process [ 44 %]process [ 45 %]process [ 45 %]process [ 45 %]process [ 46 %]process [ 46 %]process [ 46 %]process [ 46 %]process [ 46 %]process [ 47 %]process [ 47 %]process [ 47 %]process [ 48 %]process [ 48 %]process [ 48 %]process [ 48 %]process [ 48 %]process [ 49 %]process [ 49 %]process [ 49 %]process [ 50 %]process [ 50 %]process [ 50 %]process [ 50 %]process [ 50 %]process [ 51 %]process [ 51 %]process [ 51 %]process [ 52 %]process [ 52 %]process [ 52 %]process [ 52 %]process [ 52 %]process [ 53 %]process [ 53 %]process [ 53 %]process [ 54 %]process [ 54 %]process [ 54 %]process [ 54 %]process [ 54 %]process [ 55 %]process [ 55 %]process [ 55 %]process [ 56 %]process [ 56 %]process [ 56 %]process [ 56 %]process [ 56 %]process [ 57 %]process [ 57 %]process [ 57 %]process [ 58 %]process [ 58 %]process [ 58 %]process [ 58 %]process [ 58 %]process [ 59 %]process [ 59 %]process [ 59 %]process [ 60 %]process [ 60 %]process [ 60 %]process [ 60 %]process [ 60 %]process [ 61 %]process [ 61 %]process [ 61 %]process [ 62 %]process [ 62 %]process [ 62 %]process [ 62 %]process [ 62 %]process [ 63 %]process [ 63 %]process [ 63 %]process [ 64 %]process [ 64 %]process [ 64 %]process [ 64 %]process [ 64 %]process [ 65 %]process [ 65 %]process [ 65 %]process [ 66 %]process [ 66 %]process [ 66 %]process [ 66 %]process [ 66 %]process [ 67 %]process [ 67 %]process [ 67 %]process [ 68 %]process [ 68 %]process [ 68 %]process [ 68 %]process [ 68 %]process [ 69 %]process [ 69 %]process [ 69 %]process [ 70 %]process [ 70 %]process [ 70 %]process [ 70 %]process [ 70 %]process [ 71 %]process [ 71 %]process [ 71 %]process [ 72 %]process [ 72 %]process [ 72 %]process [ 72 %]process [ 72 %]process [ 73 %]process [ 73 %]process [ 73 %]process [ 74 %]process [ 74 %]process [ 74 %]process [ 74 %]process [ 74 %]process [ 75 %]process [ 75 %]process [ 75 %]process [ 76 %]process [ 76 %]process [ 76 %]process [ 76 %]process [ 76 %]process [ 77 %]process [ 77 %]process [ 77 %]process [ 78 %]process [ 78 %]process [ 78 %]process [ 78 %]process [ 78 %]process [ 79 %]process [ 79 %]process [ 79 %]process [ 80 %]process [ 80 %]process [ 80 %]process [ 80 %]process [ 80 %]process [ 81 %]process [ 81 %]process [ 81 %]process [ 82 %]process [ 82 %]process [ 82 %]process [ 82 %]process [ 82 %]process [ 83 %]process [ 83 %]process [ 83 %]process [ 84 %]process [ 84 %]process [ 84 %]process [ 84 %]process [ 84 %]process [ 85 %]process [ 85 %]process [ 85 %]process [ 86 %]process [ 86 %]process [ 86 %]process [ 86 %]process [ 86 %]process [ 87 %]process [ 87 %]process [ 87 %]process [ 88 %]process [ 88 %]process [ 88 %]process [ 88 %]process [ 88 %]process [ 89 %]process [ 89 %]process [ 89 %]process [ 90 %]process [ 90 %]process [ 90 %]process [ 90 %]process [ 90 %]process [ 91 %]process [ 91 %]process [ 91 %]process [ 92 %]process [ 92 %]process [ 92 %]process [ 92 %]process [ 92 %]process [ 93 %]process [ 93 %]process [ 93 %]process [ 94 %]process [ 94 %]process [ 94 %]process [ 94 %]process [ 94 %]process [ 95 %]process [ 95 %]process [ 95 %]process [ 96 %]process [ 96 %]process [ 96 %]process [ 96 %]process [ 96 %]process [ 97 %]process [ 97 %]process [ 97 %]process [ 98 %]process [ 98 %]process [ 98 %]process [ 98 %]process [ 98 %]process [ 99 %]process [ 99 %]process [ 99 %]process [100 %]process [100 %]process [100 %]
+[0;32mExtract: [0.652 seconds]time consumed.[0m
+<end of output>
+Test time =   7.97 sec
+----------------------------------------------------------
+Test Passed.
+"./load_test" end time: Dec 03 08:13 CST
+"./load_test" time elapsed: 00:00:07
+----------------------------------------------------------
+
+3/3 Testing: ./demo
+3/3 Test: ./demo
+Command: "/home/wu/cppjieba/build/demo"
+Directory: /home/wu/cppjieba/build
+"./demo" start time: Dec 03 08:13 CST
+Output:
+----------------------------------------------------------
+他来到了网易杭研大厦
+[demo] Cut With HMM
+他/来到/了/网易/杭研/大厦
+[demo] Cut Without HMM 
+他/来到/了/网易/杭/研/大厦
+我来到北京清华大学
+[demo] CutAll
+我/来到/北京/清华/清华大学/华大/大学
+小明硕士毕业于中国科学院计算所，后在日本京都大学深造
+[demo] CutForSearch
+小明/硕士/毕业/于/中国/科学/学院/科学院/中国科学院/计算/计算所/，/后/在/日本/京都/大学/日本京都大学/深造
+[demo] Insert User Word
+男默/女泪
+男默女泪
+[demo] CutForSearch Word With Offset
+[{"word": "小明", "offset": 0}, {"word": "硕士", "offset": 6}, {"word": "毕业", "offset": 12}, {"word": "于", "offset": 18}, {"word": "中国", "offset": 21}, {"word": "科学", "offset": 27}, {"word": "学院", "offset": 30}, {"word": "科学院", "offset": 27}, {"word": "中国科学院", "offset": 21}, {"word": "计算", "offset": 36}, {"word": "计算所", "offset": 36}, {"word": "，", "offset": 45}, {"word": "后", "offset": 48}, {"word": "在", "offset": 51}, {"word": "日本", "offset": 54}, {"word": "京都", "offset": 60}, {"word": "大学", "offset": 66}, {"word": "日本京都大学", "offset": 54}, {"word": "深造", "offset": 72}]
+[demo] Lookup Tag for Single Token
+[拖拉机:n, CEO:eng, 123:m, 。:x]
+[demo] Tagging
+我是拖拉机学院手扶拖拉机专业的。不用多久，我就会升职加薪，当上CEO，走上人生巅峰。
+[我:r, 是:v, 拖拉机:n, 学院:n, 手扶拖拉机:n, 专业:n, 的:uj, 。:x, 不用:v, 多久:m, ，:x, 我:r, 就:d, 会:v, 升职:v, 加薪:nr, ，:x, 当上:t, CEO:eng, ，:x, 走上:v, 人生:n, 巅峰:n, 。:x]
+[demo] Keyword Extraction
+我是拖拉机学院手扶拖拉机专业的。不用多久，我就会升职加薪，当上CEO，走上人生巅峰。
+[{"word": "CEO", "offset": [93], "weight": 11.7392}, {"word": "升职", "offset": [72], "weight": 10.8562}, {"word": "加薪", "offset": [78], "weight": 10.6426}, {"word": "手扶拖拉机", "offset": [21], "weight": 10.0089}, {"word": "巅峰", "offset": [111], "weight": 9.49396}]
+<end of output>
+Test time =   0.85 sec
+----------------------------------------------------------
+Test Passed.
+"./demo" end time: Dec 03 08:13 CST
+"./demo" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Dec 03 08:13 CST

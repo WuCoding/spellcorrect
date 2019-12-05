@@ -1,6 +1,0 @@
-canada 28 3
-wander 10 3
-swandam 8 3
-landau 4 3
-wagram 3 3
-andso 2 3
