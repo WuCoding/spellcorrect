@@ -1,12 +1,7 @@
 #include "../inc/func.h"
-const set<string> CNChar{ "·" , "！" , "￥" , "……" , "（" , "）" , "——" , "【" , "】" , 
-	"、" , " ；" , "：" , "’" , "‘" , "“" , "”" , "，" , "。" , "《" , "》" , "？"};
+
 int cutWord(string,vector<string>&);
-void test5(){
-	for(auto i:CNChar){
-		cout<<i<<endl;
-	}
-}
+
 string stringCN(string str){
 	str.erase(
 		remove_if(str.begin(),str.end(),static_cast<int(*)(int)>(&ispunct)),
@@ -16,8 +11,8 @@ string stringCN(string str){
 		remove_if(str.begin(),str.end(),static_cast<int(*)(int)>(&isspace)),
 		str.end()
 	);
-	const set<string> CNChar{ "·" , "！" , "￥" , "……" , "（" , "）" , "——" , "【" , "】" , 
-	"、" , " ；" , "：" , "’" , "‘" , "“" , "”" , "，" , "。" , "《" , "》" , "？"};
+	const set<string> CNChar{ "·" , "！" , "￥" , "……" , "（" , "）" , "——" , "-" , "—" , "【" , "】" , 
+	"、" , " ；" , "：" , "’" , "‘" , "“" , "”" , "，" , "。" , "《" , "》" , "？" , "_" };
 	size_t spa;
 	vector<string> words;
 	for(size_t i=0;i<str.size();){
@@ -58,17 +53,19 @@ void printLine(string corpusFile){
 	string str;
 	while(1){
 		cin>>str;
-		cin>>line;
 		cout<<"--------------------------------------------"<<endl;
-		//getline(in,line);	
+		getline(in,line);	
 		cout<<line<<endl;
+		cout<<stringCN(line)<<endl;
 
 
+/*
 		vector<string> word;
 		getCharFromString(line,word);
 		for(auto i:word){
 			cout<<i<<endl;
 		}
+*/
 	/*
 		vector<string> words;
 		cutWord(line,words);
@@ -76,7 +73,7 @@ void printLine(string corpusFile){
 			cout<<i<<endl;
 		}
 	*/
-		cout<<line<<endl;
+//		cout<<line<<endl;
 		cout<<"--------------------------------------------"<<endl;
 	}
 
@@ -100,5 +97,5 @@ void test1(){
 }
 
 int main(){
-	test3();
+	test();
 }
