@@ -16,12 +16,14 @@
 #include <ctype.h>
 #include <algorithm>
 
+#include "tinyxml2.h"
 #include "stdio.h"
 #include "../cppjieba/include/cppjieba/Jieba.hpp"
 
 #define ARGS_CHECK(argc,num) {if(argc!=num){printf("error args\n");return -1;}}
 #define FSTREAM_CHECK(fstream) {if(!fstream.is_open()){printf("error fstream\n");}}
 
+using namespace tinyxml2;
 using std::fstream;
 using std::ios;
 using std::cin;
@@ -40,50 +42,39 @@ using std::stringstream;
 using std::stack;
 
 //候选词队列节点，用于候选词优先级队列
-struct queueNode{
-	queueNode()
+class QueueNode{
+public:	
+	QueueNode(string word,int frequency)
+	: _word(word),_frequency(frequency)
 	{};
-	queueNode(string str,int fre)
-	{
-		word=str;
-		frequency=fre;
-	};
-	string word;//候选词
-	int frequency;//词频
-	int differentDegree;//与目标单词的差别度
+	void setDifferentDegree(int differentDegree){
+		_differentDegree=differentDegree;
+	}
+	string getWord()const {
+		return _word;
+	}
+	int getFrequency()const{
+		return _frequency;
+	}
+	int getDifferentDegree()const{
+		return _differentDegree;
+	}
+	void print()const{
+		cout<<_word<<" "<<_frequency<<" "<<_differentDegree<<endl;
+	}
 	// < 运算符重载
-	bool operator <(const queueNode &a) const{//true放后面,false放前面
-		//先看差别度
-		if(differentDegree<a.differentDegree){
-			return true;
-		}else if(differentDegree>a.differentDegree){
-			return false;
-		}else{//差别度相等，看词频
-			if(frequency>a.frequency){
-				return true;
-			}else if(frequency<a.frequency){
-				return false;
-			}else{//差别度，词频都相同
-				if(word<a.word){
-					return true;
-				}else{
-					return false;
-				}
-			}
-		}
-	}
+	bool operator <(const QueueNode&) const;
 	//赋值运算符重载
-	queueNode& operator =(const queueNode &a){
-		this->word=a.word;
-		this->frequency=a.frequency;
-		this->differentDegree=a.differentDegree;
-		return *this;
-	}
+	QueueNode& operator =(const QueueNode&);
+private:
+	string _word;//候选词
+	int _frequency;//词频
+	int _differentDegree;//与目标单词的差别度
 };
 
 //用于内存Cache的链表和map
 class LRUCache{
-	//内存Cache的链表节点
+	//内存Cache的链表节点，双向链表
 	struct CacheNode{
 		CacheNode(string key,string json)
 		: _key(key),_json(json),_next(nullptr),_last(nullptr)
@@ -187,13 +178,15 @@ void getIndexWord(set<int> &setInt,set<string> &setStr,unordered_map<string,set<
 void getPriorityQueue(
 		set<int> &setInt,string str,
 		vector<pair<string,int>> &dictionary,
-		priority_queue<queueNode> &priQue,
+		priority_queue<QueueNode> &priQue,
 		int queLen);
 //输入文件，要查询的单词，队列长度，输出队列
 void getCandidateWords(string dictionaryFile,string indexFile,string word,
-		stack<queueNode> &staQue,int queLen);
+		stack<QueueNode> &staQue,int queLen);
 //将string类型的json写入到文件中
 void writeInFile(string json,string file);
 //将文件中全部数据读取到一个string，返回该string
 string readFromFile(string file);
+//将一个字符串用jieba分词放入map中
+int cutStringWithJieba(string str,vector<string> &words);
 #endif

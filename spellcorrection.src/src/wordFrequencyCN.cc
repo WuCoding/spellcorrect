@@ -1,8 +1,6 @@
 #include "../inc/func.h"
 
-int cutWord(string,vector<string>&);
-
-string stringCN(string str){
+string cleanCNString(string str){
 	str.erase(
 		remove_if(str.begin(),str.end(),static_cast<int(*)(int)>(&ispunct)),
 		str.end()
@@ -12,7 +10,7 @@ string stringCN(string str){
 		str.end()
 	);
 	const set<string> CNChar{ "·" , "！" , "￥" , "……" , "（" , "）" , "——" , "-" , "—" , "【" , "】" , 
-	"、" , " ；" , "：" , "’" , "‘" , "“" , "”" , "，" , "。" , "《" , "》" , "？" , "_" };
+	"、" , "；" , "：" , "’" , "‘" , "“" , "”" , "，" , "。" , "《" , "》" , "？" , "_" };
 	size_t spa;
 	vector<string> words;
 	for(size_t i=0;i<str.size();){
@@ -36,66 +34,38 @@ string stringCN(string str){
 	}
 	return res;
 }
-void test3(){
-	string s;
-	while(1){
-		cin>>s;
-		cout<<stringCN(s)<<endl;
-	}
-}
 
-void printLine(string corpusFile){
+
+void wordFrequencyCN(string corpusFile,string dictionaryFile){
 	fstream in;
 	in.open(corpusFile,ios::in);
 	FSTREAM_CHECK(in);
 
+	fstream out;
+	out.open(dictionaryFile,ios::out);
+	FSTREAM_CHECK(out);
+
+	map<string,int> dictionary;
 	string line;
-	string str;
-	while(1){
-		cin>>str;
-		cout<<"--------------------------------------------"<<endl;
-		getline(in,line);	
-		cout<<line<<endl;
-		cout<<stringCN(line)<<endl;
+	string cleanLine;
+	while(getline(in,line)){
+		cleanLine=cleanCNString(line);
 
-
-/*
-		vector<string> word;
-		getCharFromString(line,word);
-		for(auto i:word){
-			cout<<i<<endl;
-		}
-*/
-	/*
 		vector<string> words;
-		cutWord(line,words);
+		cutStringWithJieba(cleanLine,words);
 		for(auto i:words){
-			cout<<i<<endl;
+			++dictionary[i];
 		}
-	*/
-//		cout<<line<<endl;
-		cout<<"--------------------------------------------"<<endl;
 	}
-
+	for(auto x:dictionary){
+		out<<x.first<<" "<<x.second<<endl;
+	}
 	in.close();
-}
-
-void test(){
-	const string corpusFile="../data/art/C3-Art0002.txt";
-	printLine(corpusFile);
-}
-void test1(){
-	string str;
-	while(1){
-		cin>>str;
-		vector<string> words;
-		cutWord(str,words);
-		for(auto i:words){
-			cout<<i<<endl;
-		}
-	}
+	out.close();
 }
 
 int main(){
-	test();
+	const string corpusFile="../data/art/C3-Art0002.txt";
+	const string dictionaryFile="../data/dictionaryCN.txt";
+	wordFrequencyCN(corpusFile,dictionaryFile);
 }

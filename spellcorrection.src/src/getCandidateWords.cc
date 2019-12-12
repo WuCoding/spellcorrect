@@ -32,20 +32,20 @@ void getIndexWord(set<int> &setInt,set<string> &setStr,unordered_map<string,set<
 //词典 vector<pair<string,int>> dictionary
 //队列长度 int queLen
 //输出:------------------------------------------------->
-//优先级队列 priority_queue<queueNode> priQue
+//优先级队列 priority_queue<QueueNode> priQue
 void getPriorityQueue(
 		set<int> &setInt,string str,
 		vector<pair<string,int>> &dictionary,
-		priority_queue<queueNode> &priQue,
+		priority_queue<QueueNode> &priQue,
 		int queLen){
 	for(set<int>::iterator it=setInt.begin();
 			it!=setInt.end();
 			it++){//遍历候选词
 		//创建队列节点
-		queueNode qNode(dictionary[*it].first,dictionary[*it].second);
-		qNode.differentDegree=minLevenshtein(qNode.word,str);
+		QueueNode newNode(dictionary[*it].first,dictionary[*it].second);
+		newNode.setDifferentDegree(minLevenshtein(newNode.getWord(),str));
 		//插入队列中
-		priQue.push(qNode);
+		priQue.push(newNode);
 		//检查队列长度
 		if(priQue.size()>queLen){
 			priQue.pop();
@@ -63,20 +63,20 @@ void getPriorityQueue(
 //输出:---------------------------------------------------------------->
 //
 void getCandidateWords(string dictionaryFile,string indexFile,string word,
-		stack<queueNode> &staQue,int queLen)
+		stack<QueueNode> &staQue,int queLen)
 {
 	//载入字典和索引
 	vector<pair<string,int>> dictionary;
 	unordered_map<string,set<int>> index;
 	loadDictionaryIndex(dictionaryFile,indexFile,dictionary,index);
-	
+
 	set<string> setStr;//存储单词中的字母
 	getIndexChar(setStr,word);
 
 	set<int> setInt;//存储相同字母的单词
 	getIndexWord(setInt,setStr,index);
-	
-	priority_queue<queueNode> priQue;//获取优先级队列
+
+	priority_queue<QueueNode> priQue;//获取优先级队列
 	getPriorityQueue(setInt,word,dictionary,priQue,queLen);
 
 	while(!priQue.empty()){
@@ -84,4 +84,39 @@ void getCandidateWords(string dictionaryFile,string indexFile,string word,
 		priQue.pop();
 	}
 }
+//构造json字符串
+//传入：查询词 候选词栈
+//传出：json字符串
+string createJson(string word,stack<QueueNode> &staQue){
+	Json::Value req;
+	req["Word"]=word;
 
+	Json::Value result;
+
+	while(!staQue.empty()){
+		Json::Value candidateWord;
+		candidateWord["candidateWord"]=staQue.top().getWord();
+		candidateWord["frequency"]=staQue.top().getFrequency();
+		candidateWord["differentDegree"]=staQue.top().getDifferentDegree();
+		result.append(candidateWord);
+		staQue.pop();
+	}
+	req["result"]=result;
+
+	Json::FastWriter fwriter;
+	return fwriter.write(req);
+}
+
+int main(){
+	const string dictionaryFile="../data/dictionary.txt";
+	const string indexFile="../data/index.txt";
+
+	int queLen=5;
+	string word;
+	while(1){
+		cin>>word;
+		stack<QueueNode> staQue;
+		getCandidateWords(dictionaryFile,indexFile,word,staQue,queLen);
+		cout<<createJson(word,staQue)<<endl;
+	}
+}

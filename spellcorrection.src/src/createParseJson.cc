@@ -2,7 +2,7 @@
 //构造json字符串
 //传入：查询词 候选词栈
 //传出：json字符串
-string createJson(string word,stack<queueNode> &staQueueNode){
+string createJson(string word,stack<QueueNode> &staQueueNode){
 	Json::Value req;
 	req["Word"]=word;
 
@@ -10,9 +10,9 @@ string createJson(string word,stack<queueNode> &staQueueNode){
 
 	while(!staQueueNode.empty()){
 		Json::Value candidateWord;
-		candidateWord["candidateWord"]=staQueueNode.top().word;
-		candidateWord["frequency"]=staQueueNode.top().frequency;
-		candidateWord["differentDegree"]=staQueueNode.top().differentDegree;
+		candidateWord["candidateWord"]=staQueueNode.top().getWord();
+		candidateWord["frequency"]=staQueueNode.top().getFrequency();
+		candidateWord["differentDegree"]=staQueueNode.top().getDifferentDegree();
 		result.append(candidateWord);
 		staQueueNode.pop();
 	}

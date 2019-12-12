@@ -6,7 +6,7 @@ const char* const USER_DICT_PATH = "../cppjieba/dict/user.dict.utf8";
 const char* const IDF_PATH = "../cppjieba/dict/idf.utf8";
 const char* const STOP_WORD_PATH = "../cppjieba/dict/stop_words.utf8";
 
-int cutWord(string str,vector<string> &words) {
+int cutStringWithJieba(string str,vector<string> &words) {
   cppjieba::Jieba jieba(DICT_PATH,
         HMM_PATH,
         USER_DICT_PATH,
