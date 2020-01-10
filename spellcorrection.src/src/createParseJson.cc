@@ -34,6 +34,7 @@ void parseJson(string json){
 		cout<<sjsonstr<<endl;
 	}
 }
+#if 0
 int main(){
 	stack<queueNode> staQue;
 	string str;
@@ -54,3 +55,4 @@ int main(){
 	string discFile="../data/discCache.json";
 	writeDiscCache(cache,discFile);
 }
+#endif
